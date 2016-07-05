@@ -1,4 +1,4 @@
-package eu.t6nn.tutorials;
+package eu.t6nn.tutorials.streaming.spark.farm;
 
 /**
  * Hello world!

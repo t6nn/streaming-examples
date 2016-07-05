@@ -10,8 +10,8 @@
     <artifactId>farming-simulator-spark</artifactId>
     <packaging>jar</packaging>
 
-    <name>farming-simulator-spark</name>
-    <url>http://maven.apache.org</url>
+    <name>Farming Simulator (Spark)</name>
+    <url>https://github.com/t6nn/streaming-examples</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
