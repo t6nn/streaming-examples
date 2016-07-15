@@ -1,6 +1,7 @@
 package eu.t6nn.tutorials.streaming.flink.farm;
 
 import eu.t6nn.tutorials.streaming.flink.farm.job.StreamBuilder;
+import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 public class Bootstrapper {
@@ -15,6 +16,7 @@ public class Bootstrapper {
 		int startPort = Integer.valueOf(args[1]);
 
 		StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment();
+		environment.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 		StreamBuilder streamBuilder = new StreamBuilder(farmerCount, startPort);
 
 		streamBuilder.build(environment);
