@@ -7,9 +7,11 @@
     <groupId>eu.t6nn.tutorials</groupId>
     <artifactId>streaming-examples</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Farming Simulator Parent</name>
     <modules>
         <module>farming-simulator-flink</module>
         <module>farming-simulator-spark</module>
+        <module>farming-simulator-farmer</module>
     </modules>
     <packaging>pom</packaging>
 

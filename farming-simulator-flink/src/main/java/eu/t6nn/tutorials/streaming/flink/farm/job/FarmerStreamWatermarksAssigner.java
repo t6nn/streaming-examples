@@ -12,7 +12,6 @@ public class FarmerStreamWatermarksAssigner implements AssignerWithPunctuatedWat
     @Override
     public Watermark checkAndGetNextWatermark(PickedFruit lastElement, long extractedTimestamp) {
         return new Watermark(extractedTimestamp);
-        //return new Watermark(Long.MAX_VALUE);
     }
 
     @Override
