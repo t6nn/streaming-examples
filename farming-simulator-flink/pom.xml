@@ -76,6 +76,11 @@ under the License.
 
     <dependencies>
         <dependency>
+            <groupId>eu.t6nn.tutorials</groupId>
+            <artifactId>farming-simulator-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-java</artifactId>
             <version>${flink.version}</version>

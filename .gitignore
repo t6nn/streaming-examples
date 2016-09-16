@@ -10,3 +10,4 @@ buildNumber.properties
 *.iml
 .idea
 current_pids
+test-data/*

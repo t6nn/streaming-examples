@@ -1,5 +1,8 @@
 package eu.t6nn.tutorials.streaming.flink.farm.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * @author tonispi
  */
@@ -46,5 +49,14 @@ public class PickedFruit {
         result = 31 * result + fruit.hashCode();
         result = 31 * result + (int) (timestamp ^ (timestamp >>> 32));
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("farmer", farmer)
+                .append("fruit", fruit)
+                .append("timestamp", timestamp)
+                .toString();
     }
 }
