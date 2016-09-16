@@ -1,21 +1,28 @@
 package eu.t6nn.tutorials.streaming.flink.farm.job;
 
 import eu.t6nn.tutorials.streaming.flink.farm.model.PickedFruit;
-import org.apache.flink.streaming.api.functions.AssignerWithPunctuatedWatermarks;
+import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks;
 import org.apache.flink.streaming.api.watermark.Watermark;
+
+import javax.annotation.Nullable;
 
 /**
  * @author tonispi
  */
-public class FarmerStreamWatermarksAssigner implements AssignerWithPunctuatedWatermarks<PickedFruit> {
+public class FarmerStreamWatermarksAssigner implements AssignerWithPeriodicWatermarks<PickedFruit> {
 
-    @Override
-    public Watermark checkAndGetNextWatermark(PickedFruit lastElement, long extractedTimestamp) {
-        return new Watermark(extractedTimestamp);
-    }
+    private long lastSeenTimestamp = 0L;
 
     @Override
     public long extractTimestamp(PickedFruit element, long previousElementTimestamp) {
-        return element.getTimestamp();
+        long timestamp = element.getTimestamp();
+        lastSeenTimestamp = Math.max(timestamp, lastSeenTimestamp);
+        return timestamp;
+    }
+
+    @Nullable
+    @Override
+    public Watermark getCurrentWatermark() {
+        return new Watermark(lastSeenTimestamp);
     }
 }

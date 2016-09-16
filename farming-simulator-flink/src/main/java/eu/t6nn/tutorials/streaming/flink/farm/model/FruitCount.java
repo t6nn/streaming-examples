@@ -9,9 +9,15 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class FruitCount {
     private final Fruit fruit;
     private final long count;
+    private long timestamp;
 
     public FruitCount(Fruit fruit) {
         this(fruit, 1);
+    }
+
+    public FruitCount(PickedFruit pickedFruit) {
+        this(pickedFruit.getFruit(), 1);
+        this.timestamp = pickedFruit.getTimestamp();
     }
 
     private FruitCount(Fruit fruit, long count) {
@@ -30,7 +36,9 @@ public class FruitCount {
     public FruitCount add(FruitCount other) {
         assert fruit == other.fruit;
 
-        return new FruitCount(fruit, this.count + other.count);
+        FruitCount newCount = new FruitCount(fruit, this.count + other.count);
+        newCount.timestamp = Math.max(this.timestamp, other.timestamp);
+        return newCount;
     }
 
     @Override
@@ -38,6 +46,7 @@ public class FruitCount {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append("fruit", fruit)
                 .append("count", count)
+                .append("timestamp", timestamp)
                 .toString();
     }
 }
